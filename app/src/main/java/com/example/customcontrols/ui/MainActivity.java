@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 startActivity(new Intent(MainActivity.this,CanvasRoundActivity.class));
                 if (str.equals(getString(R.string.test1))) {
                 } else if (str.equals(getString(R.string.test2))) {
+                    startActivity(new Intent(MainActivity.this,CanvasAnimationActivity.class));
                 }
             }
         }

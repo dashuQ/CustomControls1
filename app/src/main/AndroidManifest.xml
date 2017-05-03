@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CanvasRoundActivity"></activity>
+        <activity android:name=".ui.CanvasRoundActivity" />
+        <activity android:name=".ui.CanvasAnimationActivity"></activity>
     </application>
 
 </manifest>
