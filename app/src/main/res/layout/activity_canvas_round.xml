@@ -3,9 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.customcontrols.ui.CanvasRoundActivity">
+    tools:context="com.example.customcontrols.ui.CanvasRoundActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+  <!--  AndroidStudio自定义属性xmlns无法识别问题解决in Gradle projects,always use http://schemas.android.com/apk/res-auto
+    http://blog.csdn.net/nwsuafer/article/details/42121521
+    http://blog.csdn.net/oonullpointeralex/article/details/51585482-->
 
     <com.example.customcontrols.view.Round
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        app:mycolor="#ff00ff"
+        />
 </android.support.constraint.ConstraintLayout>

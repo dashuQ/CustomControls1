@@ -1,6 +1,7 @@
 package com.example.customcontrols.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.customcontrols.R;
 
 /**
  * 自定义圆
@@ -100,6 +103,12 @@ public class Round extends View {
 
     public Round(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        //读取自定义属性
+        TypedArray ta=context.obtainStyledAttributes(attrs, R.styleable.mydeclare);
+        int color=ta.getColor(R.styleable.mydeclare_mycolor,0xffff0000);//declare-styleableName_attrName
+        setBackgroundColor(color);
+
         init();
     }
 
