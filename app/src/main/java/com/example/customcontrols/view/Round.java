@@ -51,7 +51,7 @@ public class Round extends View {
         paint2.setAntiAlias(true);//去锯齿
         paint2.setStyle(Paint.Style.STROKE);//画笔样式
         paint2.setStrokeWidth(w);//画笔宽度,圆环的宽度
-        oval = new RectF(w2, w2, radius * 2 + w2, radius * 2 + w2);
+//        oval = new RectF(w2, w2, radius * 2 + w2, radius * 2 + w2);//不用在此初始了
 
         paint3 = new Paint();
         paint3.setColor(Color.BLACK);
@@ -64,22 +64,38 @@ public class Round extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        initrectf();//自已去确定位置画
+
         //当前角度
         float angli = (float) min / max * 360;
 
-        canvas.drawCircle(x, y, radius, paint1);//画圆
+//        canvas.drawCircle(x, y, radius, paint1);//画圆
+        canvas.drawCircle(width/2, heigth/2, radius, paint1);//画圆
 
 
 //        canvas.drawArc(oval, -90, 180, false, paint1);//画圆弧
+//        canvas.drawArc(oval, -90, angli, false, paint2);//画圆弧
         canvas.drawArc(oval, -90, angli, false, paint2);//画圆弧
 
-        canvas.drawText(min + "%", x, y, paint3);
+        canvas.drawText(min + "%", width/2, heigth/2, paint3);
 
         if (min < max) {
             min++;
             invalidate();//强制调用onDraw方法
         }
 
+    }
+
+    private void initrectf() {
+        if(oval==null){
+            oval=new RectF();
+            int viewSize=(int)(radius *2);
+            int left =(width-viewSize)/2;
+            int top =(heigth-viewSize)/2;
+            int right =left+viewSize;
+            int bottom =top+viewSize;
+            oval.set(left,top,right,bottom);
+        }
     }
 
     public Round(Context context, @Nullable AttributeSet attrs) {
@@ -98,5 +114,31 @@ public class Round extends View {
         init();
     }
 
+    //宽高
+    private int width;
+    private int heigth;
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        width= getSize(widthMeasureSpec);
+        heigth= getSize(heightMeasureSpec);
+        setMeasuredDimension(width,heigth);
+    }
+
+    private int getSize(int spec) {
+
+        int result = -1;
+
+        int mode = MeasureSpec.getMode(spec);
+        int size = MeasureSpec.getSize(spec);
+        //测量
+        if (mode == MeasureSpec.AT_MOST || mode == MeasureSpec.UNSPECIFIED) {//自已测量宽高
+            result = (int)(radius * 2 + w);
+        } else {
+            result=size;
+        }
+
+        return result;
+    }
 }

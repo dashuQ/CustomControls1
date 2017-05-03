@@ -6,6 +6,6 @@
     tools:context="com.example.customcontrols.ui.CanvasRoundActivity">
 
     <com.example.customcontrols.view.Round
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </android.support.constraint.ConstraintLayout>
